@@ -75,9 +75,10 @@ $('a#home-btn').click(function(e){
     $.ajax({
       url: '/creatures',
       method: 'POST',
-      data: {
+      data: { creature: {
         name: creatureName,
         description: creatureDesc
+      }
       },
       success: function(data) {
         console.log(data)

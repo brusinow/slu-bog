@@ -10,7 +10,7 @@ class CreaturesController < ApplicationController
 
   def create
     creature = Creature.create creature_params
-    update_tags(creature)
+    # update_tags(creature)
     redirect_to creatures_path
   end
 
