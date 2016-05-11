@@ -1,11 +1,65 @@
-<div class="container-fluid">
+<section id="master-section" class="container-fluid">
 <div class="row">
   <div class="col-md-8 col-md-offset-2 col-lg-8 col-lg-offset-2">
     <h1 class="center-text">The SLU Creatures</h1>
   </div>
 </div>
 <div class="row">
+  <div class="center" style="width: 186px;">
+    <a id="new-button" href="#" class="center">Add a New Creature Sighting!</a>
+  </div>
+</div>
+<div id="new-creature-form" class="row">
+<div class="col-md-8 col-md-offset-2 col-lg-8 col-lg-offset-2">
+<%= bootstrap_form_for @creature do |t| %>
+  
+<div>
+    <%= t.text_field :name %>
+ </div>
 
- <div class="center" style="width:700px; margin-bottom: 20px;"><%= image_tag("turtle.jpg", :alt => "turtle") %></div>
+ <div>
+    <%= t.text_area :description %>
+     <%= t.collection_check_boxes :tag_ids, @tags, :id, :name %>
+</div>
+  <%= t.submit %>
+<% end %>
 </div>
 </div>
+
+<div id="table-row" class="row">
+  <div class="col-md-8 col-md-offset-2 col-lg-8 col-lg-offset-2">
+    <table class="table table-striped itin-delete-table" style="margin-top: 40px">
+      <tbody id="content-section">
+        <% @creatures.each do |creature| %>
+        <tr>
+          <td> 
+           <h5><%= creature.name %></h5>
+          </td>
+          <td>
+        
+            <p><%= truncate creature.description, length: 140 %>  <a class="show-link" href='/api/creature/<%=creature.id%>'>Read More</a> </p>
+          </td>
+          <td>
+          <ul class="tag-list">
+            <% for tag in creature.tags %>
+           <li> <%= tag.name %></li>
+            <%end%>
+          </ul>
+          </td>
+          <td style="text-align: right;">
+            <a class="edit-link" href='/api/creature/<%=creature.id%>/edit'>Edit</a>
+            <a class="delete-link" href='/api/creature/<%=creature.id%>/new'>Delete</a>
+          </td>
+        </tr>
+      <% end %>
+    </tbody>
+    </table>
+  </div>
+</div>
+</section>
+
+
+
+
+
+

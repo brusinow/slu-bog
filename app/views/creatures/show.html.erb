@@ -6,7 +6,7 @@
 </div>
 <div class="row">
   <div class="center" style="width: 186px;">
-    <a href="/creatures/new" class="center">Add a New Creature Sighting!</a>
+    <a href="/api/creatures/new" class="center">Add a New Creature Sighting!</a>
   </div>
 </div>
 <div class="row">
@@ -21,9 +21,16 @@
           <td>
             <p><%= @creature.description %> </p>
           </td>
+          <td>
+           <ul class="tag-list">
+            <% for @tag in @creature.tags %>
+           <li> <%= @tag.name %></li>
+            <%end%>
+          </ul>
+          </td>
           <td style="text-align: right;">
-            <%= link_to '<button type="button">Edit</button>'.html_safe, edit_creature_path(@creature) %>
-          <%= link_to '<button type="button">Delete</button>'.html_safe, @creature, method: :delete %>
+           <a class="edit-link" href='/api/creature/<%=creature.id%>/edit'>Edit</a>
+           <a class="delete-link" href='#'>Delete</a>
           </td>
         </tr>
     

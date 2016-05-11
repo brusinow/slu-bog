@@ -13,6 +13,7 @@
 
  <div>
     <%= t.text_area :description %>
+     <%= t.collection_check_boxes :tag_ids, @tags, :id, :name %>
 </div>
   <%= t.submit %>
 <% end %>
